@@ -8,3 +8,8 @@
     gap: 15px;
     vertical-align: top;
 }
+.flex-column-gap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

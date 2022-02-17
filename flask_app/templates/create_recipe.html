@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-around">
-        <form action="/create/recipe/submit" method="post" class="col-4 p-4 bg-danger text-light">
+        <form action="/create/recipe/submit" method="post" class="col-4 p-4 bg-dark text-light flex-column-gap">
             <div class="form-group align"> 
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name">
@@ -30,10 +30,10 @@
                 <label for="instructions">Instructions:</label>
                 <textarea name="instructions" id="instructions" cols="20" rows="5"></textarea>
             </div>
-            <div class="form-group">>
-                <label for="date_made">Date made:</label>
+            <div class="form-group">
+                <label for="date_made"> Date made:</label>
                 <input type="date" name="date_made" id="date_made">
-            </div
+            </div>
             <div class="form-group">
                 <label for="under_thirty">Under 30 minutes?</label>
                 <select name="under_thirty" id="under_thirty">
@@ -41,7 +41,7 @@
                     <option value="no">no</option>
                 </select>
             </div>
-            <input type="submit" value="Create" class="">
+            <button type="submit">Create</button>
             <input type="hidden" name="users_id" value="{{session.user_id}}">
         </form>
     </div>
