@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <div class="header">
+        <h2>Edit Recipe!</h2>
+        <div class="buttons">
+            <a href="/create/recipe/form"><button class="btn-success">Create</button></a>
+            <a href="/dashboard"><button class="btn-warning">Dashboard</button></a>
+            <a href="/logout"><button class="btn-danger">Logout</button></a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <form action="/edit/recipe/submit" method="post" class="col-4 p-4 bg-primary text-light">
+            <div class="form-group">
+                <label for="name">  
+                    Name:
+                    <input type="text" name="name" id="name" value="{{recipe.name}}">
+                </label>
+            </div>
+            <div class="form-group align">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" cols="30" rows="5">{{recipe.description}}</textarea>
+            </div>
+            <div class="form-group align">
+                <label for="instructions">Instructions:</label>
+                <textarea name="instructions" cols="30" rows="5" >{{recipe.instructions}}</textarea>
+            </div>
+            <label for="date_made">Date made:</label>
+            <input type="date" name="date_made" id="date_made" value="{{recipe.date_made}}">
+            <label for="under_thirty">Under 30 minutes?</label>
+            <select name="under_thirty" id="under_thirty">
+                <option value="yes">yes</option>
+                <option value="no">no</option>
+            </select>
+            <input type="hidden" name="id" value="{{recipe.id}}">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

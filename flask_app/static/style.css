@@ -1,0 +1,10 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+}
+.align{
+    display:flex;
+    gap: 15px;
+    vertical-align: top;
+}
