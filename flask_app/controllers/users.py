@@ -1,6 +1,6 @@
 from crypt import methods
 from flask_app import app
-from flask import render_template, redirect, request, session
+from flask import render_template, redirect, request, session, jsonify, get_flashed_messages
 #import model that you need below
 from flask_app.models import user, recipe
 
@@ -13,16 +13,15 @@ def index():
 def register():
     user_id = user.User.save(request.form)
     if 'user_id' in session:
-        return redirect('/dashboard')
-    # ... do other things
-    return redirect('/')
+        return jsonify(message="success")
+    
+    return jsonify(messages = get_flashed_messages(category_filter=['register']))
 
 @app.route('/login', methods = ['POST'])
 def login_user():
     if user.User.login_user(request.form):
-        return redirect('/dashboard')
-    return redirect('/')
-
+        return jsonify(message="success")
+    return jsonify(messages = get_flashed_messages(category_filter=['login']))
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' in session:

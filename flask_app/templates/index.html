@@ -7,21 +7,17 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer ></script>
 </head>
 </head>
 <body>
     <div class="d-flex justify-content-around">
-        <form action="/register" method="post" class="col-4 p-4 bg-dark text-light">
+        <form action="/register" method="post" class="col-4 p-4 bg-dark text-light" id='register_form'>
             <h2 class="text-warning">Register</h2>
-            {% with messages = get_flashed_messages(category_filter=['register']) %}
-                {% if messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {% for message in messages %}
-                            <p>{{message}}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+            
+            <div class="" id='registerError'>
+            </div>
+                
             <div class="form-group">
                 <label for="first_name">First Name:</label>
                 <input type="text" name="first_name" class="form-control">
@@ -44,7 +40,7 @@
             </div>
             <input type="submit" value="Register" class="btn btn-warning">
         </form>
-        <form action="/login" method="post" class="col-4 p-4 bg-dark text-light">
+        <form action="/login" method="post" class="col-4 p-4 bg-dark text-light" id="login_form">
             <h2 class="text-danger">Login</h2>
             {% with messages = get_flashed_messages(category_filter=['login']) %}
                 {% if messages %}
@@ -62,9 +58,9 @@
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" name="password" class="form-control">
-            </div>
-            
+            </div>     
             <input type="submit" value="Login" class="btn btn-danger">
+            <p id="loginError"></p>
         </form>
     </div>
 </body>
